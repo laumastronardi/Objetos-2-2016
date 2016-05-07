@@ -1,1 +1,321 @@
-Object subclass: #Topografia	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'ObjetosPractica3Topografias'!!Topografia commentStamp: '<historical>' prior: 0!Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Implementation Points!Topografia subclass: #Agua	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'ObjetosPractica3Topografias'!!Agua commentStamp: '<historical>' prior: 0!Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Implementation Points!!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!igualdadContraCompuesta	^false! !!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!iguales: otraTopografia	^otraTopografia igualdadContraAgua! !!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!igualdadContraTierra	^false! !!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!proporcionTierra	^0! !!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!proporcionAgua	^1! !!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!igualdadContraAgua	^true! !Topografia subclass: #Tierra	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'ObjetosPractica3Topografias'!!Tierra commentStamp: '<historical>' prior: 0!Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Implementation Points!!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!igualdadContraAgua	^false! !!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!iguales: otraTopografia	^otraTopografia igualdadContraTierra! !!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!igualdadContraTierra	^true! !!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:37'!proporcionTierra	^1! !!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:37'!proporcionAgua	^0! !!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!igualdadContraCompuesta	^false! !TestCase subclass: #SistemaTestCase	instanceVariableNames: 'topo_compuesta comp_igual comp_desigual'	classVariableNames: ''	poolDictionaries: ''	category: 'ObjetosPractica3Topografias'!!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 23:02'!testIgualdades	| ag ti |	ag := Agua new.	ti := Tierra new.		self assert:(ag iguales: ag).	self deny:(ag iguales: ti).	self deny:(ag iguales: comp_igual).		self assert:(ti iguales: ti).	self deny:(ti iguales: ag).	self deny:(ti iguales: comp_igual).		self assert:(topo_compuesta iguales: comp_igual).	self deny:(topo_compuesta iguales: comp_desigual).	 		! !!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:58'!setUp| ag ti |	ag := Agua new.	ti := Tierra new.	topo_compuesta:=Compuesta new.	comp_igual := Compuesta new.	comp_desigual:=Compuesta new.		topo_compuesta agregarParte: ag.	topo_compuesta agregarParte: ti.	topo_compuesta agregarParte: ti.	topo_compuesta agregarParte: ag.		comp_igual agregarParte: ag.	comp_igual agregarParte: ti.	comp_igual agregarParte: ti.	comp_igual agregarParte: ag.	comp_desigual agregarParte: ag.	comp_desigual agregarParte: ti.	comp_desigual agregarParte: ag.	comp_desigual agregarParte: ti.! !!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:40'!testProporcionAgua	| ag ti |	ag := Agua new.	ti := Tierra new.		self assert: (ag proporcionAgua=1).	self assert: (ti proporcionAgua=0).	self assert: (topo_compuesta proporcionAgua=(2/4))! !!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:41'!testProporcionTierra	| ag ti |	ag := Agua new.	ti := Tierra new.		self assert: (ag proporcionTierra=0).	self assert: (ti proporcionTierra=1).	self assert: (topo_compuesta proporcionTierra=(2/4))! !Topografia subclass: #Compuesta	instanceVariableNames: 'partes'	classVariableNames: ''	poolDictionaries: ''	category: 'ObjetosPractica3Topografias'!!Compuesta commentStamp: '<historical>' prior: 0!Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Instance Variables	partes:		<Object>    Implementation Points!!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!proporcionTierra	|sum| 	sum:=0.	partes do: [ :porcion | sum := sum + porcion proporcionTierra].	^ sum / partes size.! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 13:44'!initialize	partes := OrderedCollection new.! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:16'!partes	^partes! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:21'!igualdadContraCompuesta: unaCompuesta	^(((partes at:1)=(unaCompuesta partes at:1))&((partes at:2)=(unaCompuesta partes at:2))&((partes at:3)=(unaCompuesta partes at:3))&((partes at:4)=(unaCompuesta partes at:4)))  ! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!iguales: otraTopografia	^otraTopografia igualdadContraCompuesta: self! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:15'!igualdadContraTierra	^false! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:15'!igualdadContraAgua	^false! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 14:00'!agregarParte: unaTopografia	(partes size < 4) ifTrue: [ partes add: unaTopografia ] ifFalse: [ ^'Se supero la cantidad maxima, boludo' ]. ! !!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!proporcionAgua	|sum| 	sum:=0.	partes do: [ :porcion | sum := sum + porcion proporcionAgua].	^ sum / partes size.! !Object subclass: #Sistema	instanceVariableNames: 'topo'	classVariableNames: ''	poolDictionaries: ''	category: 'ObjetosPractica3Topografias'!!Sistema commentStamp: '<historical>' prior: 0!Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Instance Variables	topo:		<Object>    Implementation Points!!Sistema methodsFor: 'accessing' stamp: 'fermin 4/13/2016 14:18'!topo	^ topo! !!Sistema methodsFor: 'accessing' stamp: 'fermin 4/13/2016 14:18'!topo: anObject	topo := anObject! !
+Object subclass: #Topografia
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ObjetosPractica3Topografias'!
+!Topografia commentStamp: '<historical>' prior: 0!
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.
+
+For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.
+
+For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+
+- message one   
+- message two 
+- what is the way to create instances is a plus.
+
+   One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+
+    Implementation Points!
+
+
+Topografia subclass: #Agua
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ObjetosPractica3Topografias'!
+!Agua commentStamp: '<historical>' prior: 0!
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.
+
+For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.
+
+For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+
+- message one   
+- message two 
+- what is the way to create instances is a plus.
+
+   One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+
+    Implementation Points!
+
+
+!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!
+igualdadContraCompuesta
+	^false
+! !
+
+!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!
+iguales: otraTopografia
+	^otraTopografia igualdadContraAgua
+! !
+
+!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!
+igualdadContraTierra
+	^false
+! !
+
+!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!
+proporcionTierra
+	^0! !
+
+!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!
+proporcionAgua
+	^1! !
+
+!Agua methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:13'!
+igualdadContraAgua
+	^true
+! !
+
+
+Topografia subclass: #Tierra
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ObjetosPractica3Topografias'!
+!Tierra commentStamp: '<historical>' prior: 0!
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.
+
+For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.
+
+For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+
+- message one   
+- message two 
+- what is the way to create instances is a plus.
+
+   One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+
+    Implementation Points!
+
+
+!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!
+igualdadContraAgua
+	^false! !
+
+!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!
+iguales: otraTopografia
+	^otraTopografia igualdadContraTierra! !
+
+!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!
+igualdadContraTierra
+	^true! !
+
+!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:37'!
+proporcionTierra
+	^1! !
+
+!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:37'!
+proporcionAgua
+	^0! !
+
+!Tierra methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!
+igualdadContraCompuesta
+	^false! !
+
+
+TestCase subclass: #SistemaTestCase
+	instanceVariableNames: 'topo_compuesta comp_igual comp_desigual'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ObjetosPractica3Topografias'!
+
+!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 23:02'!
+testIgualdades
+	| ag ti|
+	ag := Agua new.
+	ti := Tierra new.
+	
+	self assert:(ag iguales: ag).
+	self deny:(ag iguales: ti).
+	self deny:(ag iguales: comp_igual).
+	
+	self assert:(ti iguales: ti).
+	self deny:(ti iguales: ag).
+	self deny:(ti iguales: comp_igual).
+	
+	self assert:(topo_compuesta iguales: comp_igual).
+	self deny:(topo_compuesta iguales: comp_desigual).
+
+	 
+	
+	! !
+
+!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:58'!
+setUp
+| ag ti |
+	ag := Agua new.
+	ti := Tierra new.
+	topo_compuesta:=Compuesta new.
+	comp_igual := Compuesta new.
+	comp_desigual:=Compuesta new.
+	
+	topo_compuesta agregarParte: ag.
+	topo_compuesta agregarParte: ti.
+	topo_compuesta agregarParte: ti.
+	topo_compuesta agregarParte: ag.
+	
+	comp_igual agregarParte: ag.
+	comp_igual agregarParte: ti.
+	comp_igual agregarParte: ti.
+	comp_igual agregarParte: ag.
+	comp_desigual agregarParte: ag.
+	comp_desigual agregarParte: ti.
+	comp_desigual agregarParte: ag.
+	comp_desigual agregarParte: ti.! !
+
+!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:40'!
+testProporcionAgua
+	| ag ti |
+	ag := Agua new.
+	ti := Tierra new.
+	
+	self assert: (ag proporcionAgua=1).
+	self assert: (ti proporcionAgua=0).
+	self assert: (topo_compuesta proporcionAgua=(2/4))! !
+
+!SistemaTestCase methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:41'!
+testProporcionTierra
+	| ag ti |
+	ag := Agua new.
+	ti := Tierra new.
+	
+	self assert: (ag proporcionTierra=0).
+	self assert: (ti proporcionTierra=1).
+	self assert: (topo_compuesta proporcionTierra=(2/4))! !
+
+
+Topografia subclass: #Compuesta
+	instanceVariableNames: 'partes'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ObjetosPractica3Topografias'!
+!Compuesta commentStamp: '<historical>' prior: 0!
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.
+
+For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.
+
+For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+
+- message one   
+- message two 
+- what is the way to create instances is a plus.
+
+   One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	partes:		<Object>
+
+
+    Implementation Points!
+
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!
+proporcionTierra
+	|sum| 
+	sum:=0.
+	partes do: [ :porcion | sum := sum + porcion proporcionTierra].
+	^ sum / partes size.! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 13:44'!
+initialize
+	partes := OrderedCollection new.! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:16'!
+partes
+	^partes! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:21'!
+igualdadContraCompuesta: unaCompuesta
+	^(((partes at:1)=(unaCompuesta partes at:1))&((partes at:2)=(unaCompuesta partes at:2))&((partes at:3)=(unaCompuesta partes at:3))&((partes at:4)=(unaCompuesta partes at:4)))  ! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:14'!
+iguales: otraTopografia
+	^otraTopografia igualdadContraCompuesta: self! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:15'!
+igualdadContraTierra
+	^false! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:15'!
+igualdadContraAgua
+	^false! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 14:00'!
+agregarParte: unaTopografia
+	(partes size < 4) ifTrue: [ partes add: unaTopografia ] ifFalse: [ ^'Se supero la cantidad maxima, boludo' ]. ! !
+
+!Compuesta methodsFor: 'as yet unclassified' stamp: 'fermin 4/13/2016 22:36'!
+proporcionAgua
+	|sum| 
+	sum:=0.
+	partes do: [ :porcion | sum := sum + porcion proporcionAgua].
+	^ sum / partes size.! !
+
+
+Object subclass: #Sistema
+	instanceVariableNames: 'topo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ObjetosPractica3Topografias'!
+!Sistema commentStamp: '<historical>' prior: 0!
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.
+
+For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.
+
+For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+
+- message one   
+- message two 
+- what is the way to create instances is a plus.
+
+   One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	topo:		<Object>
+
+
+    Implementation Points!
+
+
+!Sistema methodsFor: 'accessing' stamp: 'fermin 4/13/2016 14:18'!
+topo
+	^ topo! !
+
+!Sistema methodsFor: 'accessing' stamp: 'fermin 4/13/2016 14:18'!
+topo: anObject
+	topo := anObject! !
